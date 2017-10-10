@@ -1,5 +1,7 @@
 <?php
-
+	// echo '<pre>';
+	// var_dump($_SERVER);
+// var_dump($_SERVER['SERVER_ADDR']);die;
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

@@ -97,7 +97,9 @@ class CI_URI {
 			// Let's try the REQUEST_URI first, this will work in most situations
 			if ($uri = $this->_detect_uri())
 			{
+
 				$this->_set_uri_string($uri);
+				// print_r($uri);die;
 				return;
 			}
 
@@ -192,6 +194,8 @@ class CI_URI {
 		{
 			$uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
 		}
+
+		// echo $uri;die;
 
 		// This section ensures that even on servers that require the URI to be in the query string (Nginx) a correct
 		// URI is found, and also fixes the QUERY_STRING server var and $_GET array.

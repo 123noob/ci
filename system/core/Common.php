@@ -214,7 +214,7 @@ if ( ! function_exists('get_config'))
 	function &get_config($replace = array())
 	{
 		static $_config;
-
+		// var_dump(isset($_config) );die; //fasle
 		if (isset($_config))
 		{
 			return $_config[0];
