@@ -110,6 +110,7 @@ class CI_Router {
 		$segments = array();
 		if ($this->config->item('enable_query_strings') === TRUE AND isset($_GET[$this->config->item('controller_trigger')]))
 		{
+			// echo $_GET[$this->config->item('directory_trigger')];die;
 			if (isset($_GET[$this->config->item('directory_trigger')]))
 			{
 				$this->set_directory(trim($this->uri->_filter_uri($_GET[$this->config->item('directory_trigger')])));

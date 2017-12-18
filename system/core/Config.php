@@ -62,11 +62,13 @@ class CI_Config {
 	function __construct()
 	{
 		$this->config =& get_config();
+		// print_r($this->config);die;
 		log_message('debug', "Config Class Initialized");
 
 		// Set the base_url automatically if none was provided
 		if ($this->config['base_url'] == '')
 		{
+
 			if (isset($_SERVER['SERVER_ADDR']))
 			{
 				$base_url = (empty($_SERVER['HTTPS']) OR strtolower($_SERVER['HTTPS']) === 'off') ? 'http' : 'https';

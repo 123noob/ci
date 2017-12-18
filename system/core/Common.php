@@ -214,7 +214,7 @@ if ( ! function_exists('get_config'))
 	function &get_config($replace = array())
 	{
 		static $_config;
-
+		// var_dump(isset($_config) );die; //fasle
 		if (isset($_config))
 		{
 			return $_config[0];
@@ -565,3 +565,9 @@ function p($arr)
 
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
+
+function p($arr)
+{
+	echo '<pre>';
+	var_dump($arr);
+}

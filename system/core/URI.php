@@ -93,17 +93,19 @@ class CI_URI {
 				$this->_set_uri_string($this->_parse_cli_args());
 				return;
 			}
-// p($_SERVER);
+
 			// Let's try the REQUEST_URI first, this will work in most situations
 			if ($uri = $this->_detect_uri())
 			{
-				// p($uri);
+
 				$this->_set_uri_string($uri);
+				// print_r($uri);die;
 				return;
 			}
 
 			// Is there a PATH_INFO variable?
 			// Note: some servers seem to have trouble with getenv() so we'll test it two ways
+
 			$path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
 			if (trim($path, '/') != '' && $path != "/".SELF)
 			{
@@ -180,6 +182,10 @@ class CI_URI {
 	 */
 	private function _detect_uri()
 	{
+		// p($_SERVER);
+		// if url :http://localhost:9111/index.php/welcome/index or http://localhost:9111
+		// $_SERVER['REQUEST_URI'] : /index.php/welcome/index or /
+		// 不管url是什么，$_SERVER['SCRIPT_NAME']: /index.php
 		if ( ! isset($_SERVER['REQUEST_URI']) OR ! isset($_SERVER['SCRIPT_NAME']))
 		{
 			return '';
@@ -194,6 +200,7 @@ class CI_URI {
 		// lcoalhost:9999 /index.php
 		// lcoalhost:9999/index.php /index.php
 		// http://localhost:9999/welcome/index /index.php
+		// p(dirname('/index.php'));
 		if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
 		{
 			$uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
@@ -207,6 +214,9 @@ class CI_URI {
 		// p(dirname($_SERVER['SCRIPT_NAME']));
 		// p($_SERVER);
 
+		// $uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+		// p($uri);
+
 		// This section ensures that even on servers that require the URI to be in the query string (Nginx) a correct
 		// URI is found, and also fixes the QUERY_STRING server var and $_GET array.
 		if (strncmp($uri, '?/', 2) === 0)
@@ -216,6 +226,11 @@ class CI_URI {
 		$parts = preg_split('#\?#i', $uri, 2);
 		// p($parts);
 		$uri = $parts[0];
+		// p($parts);
+		// array(1) {
+  		// 		[0]=>
+  		// 		string(14) "/welcome/index"
+		// 	}
 		if (isset($parts[1]))
 		{
 			$_SERVER['QUERY_STRING'] = $parts[1];
@@ -233,7 +248,7 @@ class CI_URI {
 		}
 
 		$uri = parse_url($uri, PHP_URL_PATH);
-		// p($uri);
+
 		// Do some final cleaning of the URI and return it
 		return str_replace(array('//', '../'), '/', trim($uri, '/'));
 	}
@@ -309,7 +324,9 @@ class CI_URI {
 	 * @return	void
 	 */
 	function _explode_segments()
-	{
+	{	
+		// $a = '/index';
+		// p(preg_replace("|/*(.+?)/*$|", "\\1", $a));die;
 		foreach (explode("/", preg_replace("|/*(.+?)/*$|", "\\1", $this->uri_string)) as $val)
 		{
 			// Filter segments for security

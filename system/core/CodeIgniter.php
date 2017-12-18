@@ -172,6 +172,7 @@
  *  Instantiate the routing class and set the routing
  * ------------------------------------------------------
  */
+	//读取router配置文件，载入默认控制器、方法。把uri控制器、方法载入uri类的segment变量
 	$RTR =& load_class('Router', 'core');
 	$RTR->_set_routing();
 
