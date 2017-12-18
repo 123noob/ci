@@ -42,11 +42,13 @@ class CI_Controller {
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.
+		// var_dump(is_loaded());
+
 		foreach (is_loaded() as $var => $class)
 		{
 			$this->$var =& load_class($class);
-		}
 
+		}
 		$this->load =& load_class('Loader', 'core');
 
 		$this->load->initialize();

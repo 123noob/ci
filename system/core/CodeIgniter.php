@@ -36,6 +36,8 @@
  */
 	define('CI_VERSION', '2.2.6');
 
+
+
 /**
  * CodeIgniter Branch (Core = TRUE, Reactor = FALSE)
  *
@@ -250,7 +252,7 @@
 	}
 
 	include(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php');
-
+	// p(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php');
 	// Set a mark point for benchmarking
 	$BM->mark('loading_time:_base_classes_end');
 
