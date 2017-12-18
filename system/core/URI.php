@@ -93,10 +93,11 @@ class CI_URI {
 				$this->_set_uri_string($this->_parse_cli_args());
 				return;
 			}
-
+// p($_SERVER);
 			// Let's try the REQUEST_URI first, this will work in most situations
 			if ($uri = $this->_detect_uri())
 			{
+				// p($uri);
 				$this->_set_uri_string($uri);
 				return;
 			}
@@ -118,6 +119,7 @@ class CI_URI {
 				return;
 			}
 
+			
 			// As a last ditch effort lets try using the $_GET array
 			if (is_array($_GET) && count($_GET) == 1 && trim(key($_GET), '/') != '')
 			{
@@ -182,16 +184,28 @@ class CI_URI {
 		{
 			return '';
 		}
-
+		// p($_SERVER);
+		// lcoalhost:9999 /
+		// lcoalhost:9999/index.php /index.php
 		$uri = $_SERVER['REQUEST_URI'];
+
+				//p($uri);// http://localhost:9999/index.php/welcome/index /index.php/welcome/index
+
+		// lcoalhost:9999 /index.php
+		// lcoalhost:9999/index.php /index.php
+		// http://localhost:9999/welcome/index /index.php
 		if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
 		{
 			$uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
+			// p($uri); //false
 		}
 		elseif (strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
 		{
 			$uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+			// p($uri); //false
 		}
+		// p(dirname($_SERVER['SCRIPT_NAME']));
+		// p($_SERVER);
 
 		// This section ensures that even on servers that require the URI to be in the query string (Nginx) a correct
 		// URI is found, and also fixes the QUERY_STRING server var and $_GET array.
@@ -200,6 +214,7 @@ class CI_URI {
 			$uri = substr($uri, 2);
 		}
 		$parts = preg_split('#\?#i', $uri, 2);
+		// p($parts);
 		$uri = $parts[0];
 		if (isset($parts[1]))
 		{
@@ -218,7 +233,7 @@ class CI_URI {
 		}
 
 		$uri = parse_url($uri, PHP_URL_PATH);
-
+		// p($uri);
 		// Do some final cleaning of the URI and return it
 		return str_replace(array('//', '../'), '/', trim($uri, '/'));
 	}

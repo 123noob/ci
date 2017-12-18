@@ -140,6 +140,7 @@ class CI_Router {
 		}
 
 		$this->routes = ( ! isset($route) OR ! is_array($route)) ? array() : $route;
+		//为什么unset
 		unset($route);
 
 		// Set the default controller so we can display it in the event
