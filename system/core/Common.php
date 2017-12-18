@@ -524,6 +524,7 @@ if ( ! function_exists('remove_invisible_characters'))
 
 		do
 		{
+			//搜索$str中匹配$non_displayables的部分， 以''进行替换。-1（无限）代表最多替换次数，$count如果指定，将会被填充为完成的替换次数
 			$str = preg_replace($non_displayables, '', $str, -1, $count);
 		}
 		while ($count);

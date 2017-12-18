@@ -113,12 +113,10 @@ class CI_Hooks {
 	 */
 	function _call_hook($which = '')
 	{
-		echo 1;
 		if ( ! $this->enabled OR ! isset($this->hooks[$which]))
 		{
 			return FALSE;
 		}
-		echo 2;
 		if (isset($this->hooks[$which][0]) AND is_array($this->hooks[$which][0]))
 		{
 			foreach ($this->hooks[$which] as $val)

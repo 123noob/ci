@@ -149,6 +149,7 @@ if (defined('ENVIRONMENT'))
 
 	// ensure there's a trailing slash
 	$system_path = rtrim($system_path, '/').'/';
+	// echo $system_path;die;
 
 	// Is the system path correct?
 	if ( ! is_dir($system_path))
@@ -176,7 +177,7 @@ if (defined('ENVIRONMENT'))
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
-
+	echo SYSDIR;die;
 
 	// The path to the "application" folder
 	if (is_dir($application_folder))
