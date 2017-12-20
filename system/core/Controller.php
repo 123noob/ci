@@ -46,6 +46,7 @@ class CI_Controller {
 
 		foreach (is_loaded() as $var => $class)
 		{
+			//这里把所有类载入进来，CodeIgniter.php里载入类有什么作用呢？
 			$this->$var =& load_class($class);
 
 		}

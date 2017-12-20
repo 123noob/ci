@@ -149,6 +149,7 @@ class CI_Loader {
 		$this->_ci_classes = array();
 		$this->_ci_loaded_files = array();
 		$this->_ci_models = array();
+		//类外引入文件和类内有相同名称的类is_loaded(),这里引用的是前者，因为使用类里的$this->is_loaded()
 		$this->_base_classes =& is_loaded();
 
 		$this->_ci_autoloader();

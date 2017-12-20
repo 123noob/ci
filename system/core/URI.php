@@ -325,8 +325,9 @@ class CI_URI {
 	 */
 	function _explode_segments()
 	{	
-		// $a = '/index';
+		// $a = '/index/c';
 		// p(preg_replace("|/*(.+?)/*$|", "\\1", $a));die;
+		//向后引用？
 		foreach (explode("/", preg_replace("|/*(.+?)/*$|", "\\1", $this->uri_string)) as $val)
 		{
 			// Filter segments for security

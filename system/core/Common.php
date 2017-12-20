@@ -557,12 +557,6 @@ if ( ! function_exists('html_escape'))
 	}
 }
 
-function p($arr)
-{
-	echo '<pre>';
-	var_dump($arr);
-	die;
-}
 
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
